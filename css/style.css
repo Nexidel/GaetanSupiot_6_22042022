@@ -48,3 +48,26 @@ h1 {
     height: 200px;
     width: 200px;
 }
+
+/* Menu Accessibilité */
+.ally-nav {
+    position: absolute;
+    top: -10em;
+    z-index: 100;
+    width: 100%;
+}
+
+.ally-nav a {
+    background-color: #fff;
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.ally-nav a:focus,
+.ally-nav a:hover {
+    top: 10em;
+    text-decoration: none;
+}
