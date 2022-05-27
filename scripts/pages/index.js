@@ -6,7 +6,7 @@
             // return data  
             .then(data => data)
 
-        // et bien retourner le tableau photographers seulement une fois
+        // et bien retourner le tableau photographers seulement une fois 
         
     }
 
