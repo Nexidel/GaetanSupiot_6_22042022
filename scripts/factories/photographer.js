@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-    const { name, portrait, city, country, price, tagline } = data;
+    const { name, portrait, city, country, price, tagline, id } = data;
 
     const picture = `assets/photographers/Photographers ID Photos/${portrait}`;
 
@@ -13,6 +13,7 @@ function photographerFactory(data) {
         aPhotographer.setAttribute('id', name)
         aPhotographer.setAttribute('tabindex', '3')
         aPhotographer.setAttribute('aria-labelledby', 'nom photographe')
+        aPhotographer.setAttribute('href','photographer.html?id=' + id)
         // Add <a> inside <article>
         article.appendChild(aPhotographer);
 
