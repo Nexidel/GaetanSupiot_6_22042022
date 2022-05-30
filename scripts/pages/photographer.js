@@ -5,36 +5,49 @@
 async function getPhotographer(id) {
     // Penser à remplacer par les données récupérées dans le json
     return fetch("./data/photographers.json")
-    // return reponse.json()    
-    .then(response => response.json())
-    // return data  
-    .then(data =>  {
-        let dataUser = data.photographers.find(item => item.id == id)
-        let mediaUser = data.media.filter(item => item.photographerId == id)
-        console.log('data',dataUser)
-        console.log('media',mediaUser)
+        // return reponse.json()    
+        .then(response => response.json())
+        // return data  
+        .then(data => {
+            let dataUser = data.photographers.find(item => item.id == id)
+            let mediaUser = data.media.filter(item => item.photographerId == id)
+            console.log('data', dataUser)
+            console.log('media', mediaUser)
 
-        let photographer =  new Photographer(dataUser.id, dataUser.name, dataUser.portait, dataUser.price, dataUser.tagline, mediaUser.media)
-        // setName & getName encapsulation orienté objet, visibilité 
-        return photographer;
-    })
-    
+            // Créer un objet avec les données récupérées
+            let photographer = {
+                name: dataUser.name,
+                portrait: dataUser.portrait,
+                city: dataUser.city,
+                country: dataUser.country,
+                price: dataUser.price,
+                tagline: dataUser.tagline,
+                id: dataUser.id,
+                media: mediaUser
+            }
+            
+            console.log('photographer', photographer)
+            // setName & getName encapsulation orienté objet, visibilité 
+            return photographer;
+        })
 }
 
-class Photographer {
-    constructor(id, name, portrait, country, price, tagline, media) {
-        this.name = name
-        this.portrait = portrait
-        this.country = country
-        this.price = price
-        this.tagline = tagline
-        this.media = media
-    }
-}
-
+// Abandon de la class car je galère avec les getters & setters (pas compris)
+// class Photographer {
+//     constructor(id, name, portrait, country, price, tagline, media) {
+//         this.id = id
+//         this.name = name
+//         this.portrait = portrait
+//         this.country = country
+//         this.price = price
+//         this.tagline = tagline
+//         this.media = media
+//     }
+// }
 
 async function init(id) {
     const photographer = await getPhotographer(id);
+    console.log('photographer await', photographer)
 }
 
 window.onload = function getData() {
