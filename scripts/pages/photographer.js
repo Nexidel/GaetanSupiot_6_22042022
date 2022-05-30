@@ -22,8 +22,8 @@ async function getPhotographer(id) {
                 country: dataUser.country,
                 price: dataUser.price,
                 tagline: dataUser.tagline,
-                id: dataUser.id,
                 media: mediaUser
+                // Pas besoin de l'id car déjà dans l'objet
             }
             
             console.log('photographer', photographer)
