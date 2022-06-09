@@ -6,6 +6,10 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    /* Modif Gaétan */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .contact_button {
@@ -73,4 +77,10 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+/* Delete this */
+img, video {
+    width: 100px;
+    height: 100px;
 }
