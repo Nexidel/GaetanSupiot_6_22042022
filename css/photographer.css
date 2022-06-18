@@ -5,11 +5,12 @@
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
+    /* margin: 0 100px; */
     /* Modif Gaétan */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 3rem;
 }
 
 .contact_button {
@@ -79,8 +80,65 @@ form input {
     border-radius: 5px;
 }
 
-/* Delete this */
-img, video {
-    width: 100px;
-    height: 100px;
+h2 {
+    color: #D3573C;
+    font-size: 50px;
+    margin: 0 0.5rem;
+}
+
+main {
+    padding: 0 5rem;
+}
+
+p {
+    margin: 0;
+}
+
+.tagline {
+    margin-top: 1rem;
+    color: #525252;
+}
+
+.imgProfile > img {
+    border-radius: 50%;
+}
+
+.filter-container {
+    display: flex;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.media-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* padding: 0 3rem; */
+}
+
+.imgProfile > img {
+    width: 200px;
+    height: 200px;
+}
+
+.media-img,
+.media-video {
+    margin: 1rem 0;
+    color: #901C1C;
+    font-size: 1.7rem;
+}
+
+.media-img > img {
+    width: 380px;
+    height: 380px;
+    border-radius: 5px;
+}
+.media-video > video {
+    width: 380px;
+    height: 380px;
+    border-radius: 5px;
+}
+
+.media-desc {
+    display: flex;
 }
