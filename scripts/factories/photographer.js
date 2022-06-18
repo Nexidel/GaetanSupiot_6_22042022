@@ -23,6 +23,7 @@ function photographerFactory(data) {
         aPhotographer.appendChild(img);
         // Set <img> attrivute
         img.setAttribute('alt', name)
+        img.setAttribute('id', 'artisteProfile')
         img.setAttribute("src", picture)
 
         // Create <h2>
@@ -36,6 +37,7 @@ function photographerFactory(data) {
         const divPhotographerData = document.createElement('div')
         // Set <div> attributes
         divPhotographerData.setAttribute('id', "desc_" + name)
+        divPhotographerData.classList.add('desc');
         divPhotographerData.setAttribute('tabindex', "4")
         divPhotographerData.setAttribute('aria-labelledby', "données photographe")
         // Add <div> inside <article> (after <a>)
@@ -43,12 +45,14 @@ function photographerFactory(data) {
 
         // Create <p> and add text into it + attribute
         const divPhotographerCity = document.createElement('p');
+        divPhotographerCity.classList.add('city');
         divPhotographerCity.textContent = `${city} ${country}`
         divPhotographerCity.setAttribute('aria-labelledby', 'ville photographe')
         const divPhotographerTagline = document.createElement('p');
         divPhotographerTagline.textContent = tagline
         divPhotographerTagline.setAttribute('aria-labelledby', 'tagline photographe')
         const divPhotographerPrice = document.createElement('p');
+        divPhotographerPrice.classList.add('price');
         divPhotographerPrice.textContent = price + " €/jour"
         divPhotographerPrice.setAttribute('aria-labelledby', 'prix photographe')
         // Add <p> inside <div>
