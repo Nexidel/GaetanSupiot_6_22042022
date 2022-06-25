@@ -142,3 +142,13 @@ p {
 .media-desc {
     display: flex;
 }
+
+select {
+    border-color: #901C1C;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #901C1C;
+    color: white;
+    font-size: 18px;
+    margin-left: 5px;
+}
