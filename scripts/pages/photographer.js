@@ -107,6 +107,12 @@ function getFilter() {
 
 function getUserMedia(photographer) {
     const media = photographer.media;
+    const name = photographer.name.split(' ')
+    if (name[0].includes('-')){
+        name[0] = name[0].replace('-', ' ');
+    }
+    const firstName = name[0]
+    console.log(firstName)
     const mediaContainer = document.createElement('div');
     mediaContainer.classList.add('media-container');
     media.forEach((item) => {
@@ -118,11 +124,11 @@ function getUserMedia(photographer) {
         let video;
         let titleVideo;
         if (item.image) {   
-            srcImg = `assets/photographers/Mimi/${item.image}`;
+            srcImg = `assets/photographers/${firstName}/${item.image}`;
             titleImg = item.title;
          
         } else if (item.video) {
-            srcVideo = `assets/photographers/Mimi/${item.video}`;
+            srcVideo = `assets/photographers/${firstName}/${item.video}`;
             titleVideo = item.title;
         }
         // console.log('img', srcImg, 'video', srcVideo)
