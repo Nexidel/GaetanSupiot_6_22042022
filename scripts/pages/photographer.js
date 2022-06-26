@@ -11,8 +11,6 @@ async function getPhotographer(id) {
         .then(data => {
             let dataUser = data.photographers.find(item => item.id == id)
             let mediaUser = data.media.filter(item => item.photographerId == id)
-            // console.log('data', dataUser)
-            // console.log('media', mediaUser)
 
             // Créer un objet avec les données récupérées
             let photographer = {
@@ -25,7 +23,6 @@ async function getPhotographer(id) {
                 media: mediaUser
                 // Pas besoin de l'id car déjà dans l'objet
             }
-            // console.log('photographer', photographer)
             // setName & getName encapsulation orienté objet, visibilité 
             return photographer;
         })
@@ -47,7 +44,6 @@ async function getPhotographer(id) {
 window.onload = function getData() {
     let params = (new URL(document.location)).searchParams;
     let id = params.get('id');
-    // console.log(id)
     init(id)
 }
 
@@ -100,7 +96,6 @@ function getFilter() {
     filter.appendChild(option3);
     filterContainer.appendChild(filter);
 
-    // console.log('filter', filterContainer)
     return (filterContainer);
 }
 
@@ -112,11 +107,9 @@ function getUserMedia(photographer) {
         name[0] = name[0].replace('-', ' ');
     }
     const firstName = name[0]
-    console.log(firstName)
     const mediaContainer = document.createElement('div');
     mediaContainer.classList.add('media-container');
     media.forEach((item) => {
-        // console.log('item', item)
         let srcImg;
         let img;
         let titleImg;
@@ -131,7 +124,6 @@ function getUserMedia(photographer) {
             srcVideo = `assets/photographers/${firstName}/${item.video}`;
             titleVideo = item.title;
         }
-        // console.log('img', srcImg, 'video', srcVideo)
         if (srcImg !== undefined) {
             // Créer un élement img et lui ajouter un attribut src et un alt
             img = document.createElement('img');
@@ -191,7 +183,6 @@ function getUserMedia(photographer) {
 
 async function init(id) {
     const photographer = await getPhotographer(id);
-    // console.log('photographer await', photographer)
     const photographersSection = document.querySelector(".photograph-header");
 
     const userDesc = getUserDesc(photographer);
@@ -202,7 +193,6 @@ async function init(id) {
     
     const userMedia = getUserMedia(photographer);
     photographersSection.insertAdjacentElement('afterend',userMedia);
-    console.log('userMedia', userMedia)
 
     const filter = getFilter();
     photographersSection.insertAdjacentElement('afterend',filter);
