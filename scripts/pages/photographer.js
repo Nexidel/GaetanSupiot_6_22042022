@@ -1,3 +1,5 @@
+var photographer = [];
+
 //Mettre le code JavaScript lié à la page photographer.html
 
 // faire un fetch recup l'id pour json
@@ -84,24 +86,88 @@ function getFilter() {
     const filterText = document.createElement('p');
     filterText.textContent = 'Trier par';
     filterContainer.appendChild(filterText);
-    const filter = document.createElement('select');
-    const option1 = document.createElement('option');
-    option1.textContent = 'Populartié';
-    const option2 = document.createElement('option');
-    option2.textContent = 'Date';
-    const option3 = document.createElement('option');
-    option3.textContent = 'Titre';
-    filter.appendChild(option1);
-    filter.appendChild(option2);
-    filter.appendChild(option3);
-    filterContainer.appendChild(filter);
+    const selectWrapper = document.createElement('div')
+    selectWrapper.classList.add('select-wrapper')
+    const select = document.createElement('div')
+    select.classList.add('select')
+    selectWrapper.appendChild(select)
+    const selectTrigger = document.createElement('div')
+    selectTrigger.classList.add('select__trigger')
+    select.appendChild(selectTrigger)
+    const span1 = document.createElement('span')
+    span1.textContent = 'Popularité'
+    selectTrigger.appendChild(span1)
+    const arrrow = document.createElement('div')
+    arrrow.classList.add('arrrow')
+    selectTrigger.appendChild(arrrow)
+    const customOptions = document.createElement('div')
+    customOptions.classList.add('custom-options')
+    select.appendChild(customOptions)
+    // 1e option du select
+    const options1 = document.createElement('div')
+    options1.classList.add('custom-option')
+    options1.classList.add('selected')
+    options1.setAttribute('data-value', 'Popularité')
+    options1.textContent = 'Popularité'
+    customOptions.appendChild(options1)
+    // 2e option du select
+    const options2 = document.createElement('div')
+    options2.classList.add('custom-option')
+    options2.setAttribute('data-value', 'Date')
+    options2.textContent = 'Date'
+    customOptions.appendChild(options2)
+    // 3e option du select
+    const options3 = document.createElement('div')
+    options3.classList.add('custom-option')
+    options3.setAttribute('data-value', 'Titre')
+    options3.textContent = 'Titre'
+    customOptions.appendChild(options3)
+
+    filterContainer.appendChild(selectWrapper)
 
     return (filterContainer);
 }
 
+function getJSFilter() {
+
+    document.querySelector('.select-wrapper').addEventListener('click', function() {
+        this.querySelector('.select').classList.toggle('open');
+    })
+
+    for (const option of document.querySelectorAll(".custom-option")) {
+        option.addEventListener('click', function() {
+            if (!this.classList.contains('selected')) {
+                this.parentNode.querySelector('.custom-option.selected').classList.remove('selected');
+                this.classList.add('selected');
+                this.closest('.select').querySelector('.select__trigger span').textContent = this.textContent;
+            }
+        })
+    }
+
+    window.addEventListener('click', function(e) {
+        const select = document.querySelector('.select')
+        if (!select.contains(e.target)) {
+            select.classList.remove('open');
+        }
+    });
+}
+
+function filterMedia(media, filterBy) {
+    switch(filterBy) {
+        case 'Popularité':
+            return media.sort((a, b) => b.likes - a.likes);
+        case 'Date':
+            return media.sort((a, b) => b.date - a.date);
+        case 'Titre':
+            return media.sort((a, b) => a.title.localeCompare(b.title));
+        default:
+            return media;
+    }
+}
 
 function getUserMedia(photographer) {
-    const media = photographer.media;
+    const media = filterMedia(photographer.media, 'Titre');
+    console.log('media',media);
     const name = photographer.name.split(' ')
     if (name[0].includes('-')){
         name[0] = name[0].replace('-', ' ');
@@ -164,7 +230,7 @@ function getUserMedia(photographer) {
             // Créer une div pour le titre et le like
             const mediaTitle = document.createElement('div');
             mediaTitle.classList.add('media-desc');
-            // Créer un élement div pour la vidéo et les desc
+            // Créer un élement div pour la vidéo et les descs
             const mediaElement = document.createElement('div');
             mediaElement.classList.add('media-video');
             // Ajouter l'élement video dans la div media
@@ -181,8 +247,90 @@ function getUserMedia(photographer) {
    return mediaContainer;
 }
 
+function modalMedia(photographer) {
+    const media = photographer.media;
+    // console.log(media);
+    // console.log(media.length);
+    const main = document.querySelector('main');
+    const modal = document.createElement('div');
+    modal.setAttribute('id', 'media-modal');
+    modal.classList.add('media-modal');
+    main.insertAdjacentElement('afterend', modal);
+    // Close Button
+    const span = document.createElement('span');
+    span.classList.add('close');
+    span.setAttribute('onclick', 'closeModal()');
+    modal.appendChild(span);
+    // Modal Content
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+    modal.appendChild(modalContent);
+    // Slide
+    for(let i = 0; i < media.length; i++) {
+        const slide = document.createElement('div');
+        slide.classList.add('slide');
+        modalContent.appendChild(slide);
+        if (media[i].image) {
+            const img = document.createElement('img');
+            img.setAttribute('src', `assets/photographers/${photographer.name.split(' ')[0]}/${media[i].image}`);
+            img.setAttribute('alt', media[i].title);
+            slide.appendChild(img);
+            // console.log(img);
+        } else if (media[i].video) {
+            const video = document.createElement('video');
+            video.setAttribute('src', `assets/photographers/${photographer.name.split(' ')[0]}/${media[i].video}`);
+            video.setAttribute('type', media[i].title);
+            slide.appendChild(video);
+            // console.log(video);
+        }
+    }
+}
+
+function closeModalMedia() {
+    const modal = document.querySelector('#media-modal');
+    modal.style.display = "none";
+}
+
+function modalForm() {
+    const modal = document.getElementById("champ_modal");
+    // Add attribute to label & input prenom
+    modal.children[0].setAttribute('for', 'prenom')
+    modal.children[1].setAttribute('type', 'text');
+    modal.children[1].setAttribute('name', 'prenom');
+    // Create Label Input nom
+    const labelNom = document.createElement('label');
+    labelNom.setAttribute('for', 'nom');
+    labelNom.textContent = "Nom";
+    const inputNom = document.createElement('input');
+    inputNom.setAttribute('type', 'text');
+    inputNom.setAttribute('name', 'nom');
+    modal.appendChild(labelNom);
+    modal.appendChild(inputNom);
+    // Create Label Input email
+    const labelEmail = document.createElement('label');
+    labelEmail.setAttribute('for', 'email');
+    labelEmail.textContent = "Email";
+    const inputEmail = document.createElement('input');
+    inputEmail.setAttribute('type', 'email');
+    inputEmail.setAttribute('name', 'email');
+    modal.appendChild(labelEmail);
+    modal.appendChild(inputEmail);
+    // Create Label Input message
+    const labelMessage = document.createElement('label');
+    labelMessage.setAttribute('for', 'message');
+    labelMessage.textContent = "Message";
+    const inputMessage = document.createElement('textarea');
+    inputMessage.setAttribute('id', 'message');
+    inputMessage.setAttribute('name', 'message');
+    inputMessage.setAttribute('wrap', 'soft');
+    modal.appendChild(labelMessage);
+    modal.appendChild(inputMessage);
+    const message = document.getElementById("message");
+    message.style.width = "100%";
+}
+
 async function init(id) {
-    const photographer = await getPhotographer(id);
+    photographer = await getPhotographer(id);
     const photographersSection = document.querySelector(".photograph-header");
 
     const userDesc = getUserDesc(photographer);
@@ -196,4 +344,10 @@ async function init(id) {
 
     const filter = getFilter();
     photographersSection.insertAdjacentElement('afterend',filter);
+
+    getJSFilter();
+
+    modalForm();
+
+    modalMedia(photographer);
 }
