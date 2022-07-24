@@ -117,13 +117,6 @@ p {
     border-radius: 50%;
 }
 
-.filter-container {
-    display: flex;
-    font-weight: bold;
-    margin: 1rem 0;
-    align-items: center;
-}
-
 .media-container {
     display: flex;
     flex-wrap: wrap;
@@ -158,7 +151,7 @@ p {
     display: flex;
 }
 
-select {
+/* select {
     border-color: #901C1C;
     border-radius: 5px;
     padding: 10px;
@@ -166,7 +159,7 @@ select {
     color: white;
     font-size: 18px;
     margin-left: 5px;
-}
+} */
 
 
 /* Modal */
@@ -182,4 +175,122 @@ select {
     overflow: auto;
     background-color: rgba(13, 15, 36, 0.4);
     padding-top: 2.5rem;
+}
+
+/* Select */
+
+.filter-container {
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.select-wrapper {
+    position: relative;
+    user-select: none;
+    margin-left: 20px;
+    width: 10%;
+}
+.select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-width: 0;
+    border-style: solid;
+    border-color: #901C1C;
+}
+.select__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    font-size: 20px;
+    font-weight: 300;
+    color: #ffffff;
+    border-radius: 5px;
+    height: 60px;
+    line-height: 60px;
+    background: #901C1C;
+    cursor: pointer;
+    border-width: 2px 0 2px 0;
+    border-style: solid;
+    border-color: #901C1C;
+}
+.custom-options {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: none;
+    border-top: 0;
+    background: #fff;
+    transition: all 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+.custom-option.selected {
+    display: none;
+}
+.select.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+.custom-option {
+    position: relative;
+    display: block;
+    padding: 0 15px 0 15px;
+    font-size: 20px;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #901C1C;
+    line-height: 60px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.custom-option:hover {
+    cursor: pointer;
+    background-color: #901C1C;
+}
+.custom-option.selected {
+    color: #ffffff;
+    background-color: #901C1C;
+}
+
+/* Select Custom Arrow */
+.arrow {
+    position: relative;
+    height: 15px;
+    width: 15px;
+}
+.arrow::before, .arrow::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 0.15rem;
+    height: 100%;
+    transition: all 0.5s;
+}
+.arrow::before {
+    left: -5px;
+    transform: rotate(45deg);
+    background-color: #394a6d;
+}
+.arrow::after {
+    left: 5px;
+    transform: rotate(-45deg);
+    background-color: #394a6d;
+}
+.open .arrow::before {
+    left: -5px;
+    transform: rotate(-45deg);
+}
+.open .arrow::after {
+    left: 5px;
+    transform: rotate(45deg);
 }
