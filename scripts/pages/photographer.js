@@ -79,54 +79,54 @@ function getUserPicture(photographer) {
     return (divPicture);
 }
 
-function getFilter() {
-    // Crétation du filter
-    const filterContainer = document.createElement('div');
-    filterContainer.classList.add('filter-container');
-    const filterText = document.createElement('p');
-    filterText.textContent = 'Trier par';
-    filterContainer.appendChild(filterText);
-    const selectWrapper = document.createElement('div')
-    selectWrapper.classList.add('select-wrapper')
-    const select = document.createElement('div')
-    select.classList.add('select')
-    selectWrapper.appendChild(select)
-    const selectTrigger = document.createElement('div')
-    selectTrigger.classList.add('select__trigger')
-    select.appendChild(selectTrigger)
-    const span1 = document.createElement('span')
-    span1.textContent = 'Popularité'
-    selectTrigger.appendChild(span1)
-    const arrrow = document.createElement('div')
-    arrrow.classList.add('arrrow')
-    selectTrigger.appendChild(arrrow)
-    const customOptions = document.createElement('div')
-    customOptions.classList.add('custom-options')
-    select.appendChild(customOptions)
-    // 1e option du select
-    const options1 = document.createElement('div')
-    options1.classList.add('custom-option')
-    options1.classList.add('selected')
-    options1.setAttribute('data-value', 'Popularité')
-    options1.textContent = 'Popularité'
-    customOptions.appendChild(options1)
-    // 2e option du select
-    const options2 = document.createElement('div')
-    options2.classList.add('custom-option')
-    options2.setAttribute('data-value', 'Date')
-    options2.textContent = 'Date'
-    customOptions.appendChild(options2)
-    // 3e option du select
-    const options3 = document.createElement('div')
-    options3.classList.add('custom-option')
-    options3.setAttribute('data-value', 'Titre')
-    options3.textContent = 'Titre'
-    customOptions.appendChild(options3)
+// function getFilter() {
+//     // Création du filter
+//     const filterContainer = document.createElement('div');
+//     filterContainer.classList.add('filter-container');
+//     const filterText = document.createElement('p');
+//     filterText.textContent = 'Trier par';
+//     filterContainer.appendChild(filterText);
+//     const selectWrapper = document.createElement('div')
+//     selectWrapper.classList.add('select-wrapper')
+//     const select = document.createElement('div')
+//     select.classList.add('select')
+//     selectWrapper.appendChild(select)
+//     const selectTrigger = document.createElement('div')
+//     selectTrigger.classList.add('select__trigger')
+//     select.appendChild(selectTrigger)
+//     const span1 = document.createElement('span')
+//     span1.textContent = 'Popularité'
+//     selectTrigger.appendChild(span1)
+//     const arrrow = document.createElement('div')
+//     arrrow.classList.add('arrrow')
+//     selectTrigger.appendChild(arrrow)
+//     const customOptions = document.createElement('div')
+//     customOptions.classList.add('custom-options')
+//     select.appendChild(customOptions)
+//     // 1e option du select
+//     const options1 = document.createElement('div')
+//     options1.classList.add('custom-option')
+//     options1.classList.add('selected')
+//     options1.setAttribute('data-value', 'Popularité')
+//     options1.textContent = 'Popularité'
+//     customOptions.appendChild(options1)
+//     // 2e option du select
+//     const options2 = document.createElement('div')
+//     options2.classList.add('custom-option')
+//     options2.setAttribute('data-value', 'Date')
+//     options2.textContent = 'Date'
+//     customOptions.appendChild(options2)
+//     // 3e option du select
+//     const options3 = document.createElement('div')
+//     options3.classList.add('custom-option')
+//     options3.setAttribute('data-value', 'Titre')
+//     options3.textContent = 'Titre'
+//     customOptions.appendChild(options3)
 
-    filterContainer.appendChild(selectWrapper)
+//     filterContainer.appendChild(selectWrapper)
 
-    return (filterContainer);
-}
+//     return (filterContainer);
+// }
 
 function getJSFilter() {
 
@@ -291,47 +291,48 @@ function closeModalMedia() {
     modal.style.display = "none";
 }
 
-function modalForm() {
-    const modal = document.getElementById("champ_modal");
-    // Add attribute to label & input prenom
-    modal.children[0].setAttribute('for', 'prenom')
-    modal.children[1].setAttribute('type', 'text');
-    modal.children[1].setAttribute('name', 'prenom');
-    // Create Label Input nom
-    const labelNom = document.createElement('label');
-    labelNom.setAttribute('for', 'nom');
-    labelNom.textContent = "Nom";
-    const inputNom = document.createElement('input');
-    inputNom.setAttribute('type', 'text');
-    inputNom.setAttribute('name', 'nom');
-    modal.appendChild(labelNom);
-    modal.appendChild(inputNom);
-    // Create Label Input email
-    const labelEmail = document.createElement('label');
-    labelEmail.setAttribute('for', 'email');
-    labelEmail.textContent = "Email";
-    const inputEmail = document.createElement('input');
-    inputEmail.setAttribute('type', 'email');
-    inputEmail.setAttribute('name', 'email');
-    modal.appendChild(labelEmail);
-    modal.appendChild(inputEmail);
-    // Create Label Input message
-    const labelMessage = document.createElement('label');
-    labelMessage.setAttribute('for', 'message');
-    labelMessage.textContent = "Message";
-    const inputMessage = document.createElement('textarea');
-    inputMessage.setAttribute('id', 'message');
-    inputMessage.setAttribute('name', 'message');
-    inputMessage.setAttribute('wrap', 'soft');
-    modal.appendChild(labelMessage);
-    modal.appendChild(inputMessage);
-    const message = document.getElementById("message");
-    message.style.width = "100%";
-}
+// function modalForm() {
+//     const modal = document.getElementById("champ_modal");
+//     // Add attribute to label & input prenom
+//     modal.children[0].setAttribute('for', 'prenom')
+//     modal.children[1].setAttribute('type', 'text');
+//     modal.children[1].setAttribute('name', 'prenom');
+//     // Create Label Input nom
+//     const labelNom = document.createElement('label');
+//     labelNom.setAttribute('for', 'nom');
+//     labelNom.textContent = "Nom";
+//     const inputNom = document.createElement('input');
+//     inputNom.setAttribute('type', 'text');
+//     inputNom.setAttribute('name', 'nom');
+//     modal.appendChild(labelNom);
+//     modal.appendChild(inputNom);
+//     // Create Label Input email
+//     const labelEmail = document.createElement('label');
+//     labelEmail.setAttribute('for', 'email');
+//     labelEmail.textContent = "Email";
+//     const inputEmail = document.createElement('input');
+//     inputEmail.setAttribute('type', 'email');
+//     inputEmail.setAttribute('name', 'email');
+//     modal.appendChild(labelEmail);
+//     modal.appendChild(inputEmail);
+//     // Create Label Input message
+//     const labelMessage = document.createElement('label');
+//     labelMessage.setAttribute('for', 'message');
+//     labelMessage.textContent = "Message";
+//     const inputMessage = document.createElement('textarea');
+//     inputMessage.setAttribute('id', 'message');
+//     inputMessage.setAttribute('name', 'message');
+//     inputMessage.setAttribute('wrap', 'soft');
+//     modal.appendChild(labelMessage);
+//     modal.appendChild(inputMessage);
+//     const message = document.getElementById("message");
+//     message.style.width = "100%";
+// }
 
 async function init(id) {
     photographer = await getPhotographer(id);
     const photographersSection = document.querySelector(".photograph-header");
+    const photosFilter = document.querySelector(".filter-container");
 
     const userDesc = getUserDesc(photographer);
     photographersSection.insertBefore(userDesc, photographersSection.firstChild);
@@ -340,10 +341,10 @@ async function init(id) {
     photographersSection.insertAdjacentElement('beforeend', userPortrait);
     
     const userMedia = getUserMedia(photographer);
-    photographersSection.insertAdjacentElement('afterend',userMedia);
+    photosFilter.insertAdjacentElement('afterend',userMedia);
 
-    const filter = getFilter();
-    photographersSection.insertAdjacentElement('afterend',filter);
+    // const filter = getFilter();
+    // photographersSection.insertAdjacentElement('afterend',filter);
 
     getJSFilter();
 
