@@ -22,6 +22,21 @@
     <div class="photograph-header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
+    <div class="filter-container">
+      <p>Trier par</p>
+      <div class="select-wrapper">
+        <div class="select">
+          <div class="select__trigger"><span>Popularité</span>
+            <div class="arrrow"></div>
+          </div>
+          <div class="custom-options">
+            <div class="custom-option selected" data-value="Popularité">Popularité</div>
+            <div class="custom-option" data-value="Date">Date</div>
+            <div class="custom-option" data-value="Titre">Titre</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <div id="contact_modal">
     <div class="modal">
@@ -31,8 +46,14 @@
       </header>
       <form>
         <div id="champ_modal">
-          <label>Prénom</label>
-          <input />
+          <label for="prenom">Prénom</label>
+          <input type="text" name="prenom" />
+          <label for="nom">Nom</label>
+          <input type="text" name="nom" />
+          <label for="email">Email</label>
+          <input type="email" name="email" />
+          <label for="message">Message</label>
+          <textarea id="message" name="message" wrap="soft" style="width: 100%;"></textarea>
         </div>
         <button class="contact_button">Envoyer</button>
       </form>
