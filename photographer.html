@@ -3,6 +3,7 @@
 
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/carousel.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -14,13 +15,13 @@
 
 <body>
   <header>
-    <a id="fisheye" href="index.html" tabindex="1">
+    <a id="fisheye" href="index.html" aria-label="Fisheye Gome page" aria tabindex="1">
       <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
     </a>
   </header>
   <main id="main">
     <div class="photograph-header">
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button class="contact_button" aria-labelledby="Contact me" onclick="displayModal()">Contactez-moi</button>
     </div>
     <div class="filter-container">
       <p>Trier par</p>
@@ -38,6 +39,17 @@
       </div>
     </div>
   </main>
+
+  <div id="carousel_modal">
+    <div class="slideshow-container">
+
+    </div>
+  </div>
+
+
+
+
+
   <div id="contact_modal">
     <div class="modal">
       <header>
@@ -60,6 +72,7 @@
     </div>
   </div>
   <script src="scripts/utils/contactForm.js"></script>
+  <script src="scripts/utils/carousel.js"></script>
   <script src="scripts/pages/photographer.js"></script>
 </body>
 
