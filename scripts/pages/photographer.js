@@ -143,12 +143,12 @@ function getJSFilter() {
                 this.classList.add('selected');
                 this.closest('.select').querySelector('.select__trigger span').textContent = this.textContent;
                 displayMedia(getUserMedia(photographer, this.getAttribute('data-value')));
-
             }
         })
     }
 
-    window.addEventListener('click', function (e) {
+    const main = document.getElementById('main')
+    main.addEventListener('click', function (e) {
         const select = document.querySelector('.select')
         if (!select.contains(e.target)) {
             select.classList.remove('open');
@@ -170,16 +170,19 @@ function filterMedia(media, filterBy) {
     }
 }
 
-
+function nameShortPhotographer(photographer) {
+    const nameShort = photographer.name.split(' ')
+    if (nameShort[0].includes('-')) {
+        nameShort[0] = nameShort[0].replace('-', ' ');
+    }
+    return nameShort[0];
+}
 
 function getUserMedia(photographer, filterBy) {
+    let cpt = 0;
     const media = filterMedia(photographer.media, filterBy);
     console.log('media', media);
-    const name = photographer.name.split(' ')
-    if (name[0].includes('-')) {
-        name[0] = name[0].replace('-', ' ');
-    }
-    const firstName = name[0]
+    const firstName = nameShortPhotographer(photographer)
     const mediaContainer = document.createElement('div');
     mediaContainer.classList.add('media-container');
     media.forEach((item) => {
@@ -201,11 +204,15 @@ function getUserMedia(photographer, filterBy) {
             srcVideo = `assets/photographers/${firstName}/${item.video}`;
             titleVideo = item.title;
         }
-        if (srcImg !== undefined) {
+        if (srcImg !== undefined) {            
             // Créer un élement img et lui ajouter un attribut src et un alt
             img = document.createElement('img');
             img.setAttribute('src', srcImg);
             img.setAttribute('alt', titleImg);
+            // Index media
+            img.setAttribute('data-index', cpt++);
+            // Affichage Modal
+            img.setAttribute('onClick', 'displayCarousel(this)');
             // Créer un élement p et lui ajouter le titre du media
             imgName = document.createElement('p');
             imgName.classList.add('tiltle-media');
@@ -238,7 +245,10 @@ function getUserMedia(photographer, filterBy) {
             // Créer un élement video et lui ajouter un attribut src et un type
             video = document.createElement('video');
             video.setAttribute('src', srcVideo);
-            video.setAttribute('type', titleVideo);
+            video.setAttribute('title', titleVideo);
+            video.setAttribute('type', 'video/mp4');
+             // Index media
+            video.setAttribute('data-index', cpt++);
             // Créer un élement p et lui ajouter le titre du media
             videoName = document.createElement('p');
             videoName.classList.add('tiltle-media');
@@ -270,80 +280,6 @@ function getUserMedia(photographer, filterBy) {
         }
     });
     return mediaContainer;
-}
-
-
-
-
-function getDataCarousel(photographer) {
-    document.getElementsByClassName('slideshow-container')
-    for (let i = 0; i < photographer.media.length; i++) {
-        if(photographer.media[i].image != undefined) {
-            const div = document.createElement('div');
-            div.classList.add('mySlide');
-            const media = document.createElement('img');
-            titleMedia = `assets/photographers/${photographer.name}/${photographer.media[i].image}`;
-            media.setAttribute('alt', titleMedia);
-            console.log('titleMedia', titleMedia);
-        } else {
-            photographer.media[i].image == photographer.media[i].video 
-            const div = document.createElement('div');
-            div.classList.add('mySlide');
-            const media = document.createElement('video');
-            titleMedia = `assets/photographers/${photographer.name}/${photographer.media[i].video}`;
-            media.setAttribute('alt', titleMedia);
-            console.log('titleMedia', titleMedia)
-        }
-    }
-}
-
-
-
-
-
-
-function modalMedia(photographer) {
-    const media = photographer.media;
-    // console.log(media);
-    // console.log(media.length);
-    const main = document.querySelector('#carousel_modal');
-    const modal = document.createElement('div');
-    modal.setAttribute('id', 'media-modal');
-    modal.classList.add('media-modal');
-    main.appendChild(modal);
-    // Close Button
-    const span = document.createElement('span');
-    span.classList.add('close');
-    span.setAttribute('onclick', 'closeModal()');
-    modal.appendChild(span);
-    // Modal Content
-    const modalContent = document.createElement('div');
-    modalContent.classList.add('modal-content');
-    modal.appendChild(modalContent);
-    // Slide
-    for (let i = 0; i < media.length; i++) {
-        const slide = document.createElement('div');
-        slide.classList.add('slide');
-        modalContent.appendChild(slide);
-        if (media[i].image) {
-            const img = document.createElement('img');
-            img.setAttribute('src', `assets/photographers/${photographer.name.split(' ')[0]}/${media[i].image}`);
-            img.setAttribute('alt', media[i].title);
-            slide.appendChild(img);
-            // console.log(img);
-        } else if (media[i].video) {
-            const video = document.createElement('video');
-            video.setAttribute('src', `assets/photographers/${photographer.name.split(' ')[0]}/${media[i].video}`);
-            video.setAttribute('type', media[i].title);
-            slide.appendChild(video);
-            // console.log(video);
-        }
-    }
-}
-
-function closeModalMedia() {
-    const modal = document.querySelector('#media-modal');
-    modal.style.display = "none";
 }
 
 // function modalForm() {
@@ -392,8 +328,6 @@ function displayMedia(userMedia) {
     photosFilter.insertAdjacentElement('afterend', userMedia);
 }
 
-
-
 async function init(id) {
     photographer = await getPhotographer(id);
     const photographersSection = document.querySelector(".photograph-header");
@@ -405,10 +339,7 @@ async function init(id) {
     photographersSection.insertAdjacentElement('beforeend', userPortrait);
 
     displayMedia(getUserMedia(photographer, 'Titre'));
-
     getJSFilter();
 
-    // modalForm();
-
-    // Léger problème, à trouver
+    
 }

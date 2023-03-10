@@ -168,8 +168,7 @@ p {
 
 /* Modal */
 
-#contact_modal, 
-#carousel_modal {
+#contact_modal {
     display: none;
     z-index: 5;
     position: fixed;

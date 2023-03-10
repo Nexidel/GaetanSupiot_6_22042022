@@ -41,8 +41,18 @@
   </main>
 
   <div id="carousel_modal">
-    <div class="slideshow-container">
+    <div class="carousel_container">
+      <div class="carousel_media">
+        <img id="closeCarousel" src="assets/icons/close_carousel.svg" onclick="closeCarousel()" />
 
+        <img id="mediaCarousel" src="" media-index="" />
+        <!-- <video ></video> -->
+        <div id="mediaName"></div>
+
+        <a class="prev" onclick="previousMedia()"><i class="fa-solid fa-chevron-left"></i></a>
+        <a class="next" onclick="nextMedia()"><i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+      <!-- Next and Previous button -->
     </div>
   </div>
 
