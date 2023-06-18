@@ -41,12 +41,14 @@ h1 {
 
 .photographer_section article h2 {
     color: #D3573C;
-    font-size: 50px;
+    font-size: 45px;
 }
 
 .photographer_section article img {
-    height: 150px;
-    width: 150px;
+    /* height: 150px;
+    width: 150px; */
+    width: 100%;
+    object-fit: fill;
 }
 
 /* Menu Accessibilité */

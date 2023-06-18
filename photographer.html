@@ -15,19 +15,19 @@
 
 <body>
   <header>
-    <a id="fisheye" href="index.html" aria-label="Fisheye Gome page" aria tabindex="1">
+    <a id="fisheye" href="index.html" aria-label="Fisheye Home page" aria tabindex="1">
       <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
     </a>
   </header>
   <main id="main">
     <div class="photograph-header">
-      <button class="contact_button" aria-labelledby="Contact me" onclick="displayModal()">Contactez-moi</button>
+      <button class="contact_button" aria-labelledby="Contact me" tabindex="2" onclick="displayModal()">Contactez-moi</button>
     </div>
     <div class="filter-container">
       <p>Trier par</p>
       <div class="select-wrapper">
         <div class="select">
-          <div class="select__trigger"><span>Popularité</span>
+          <div class="select__trigger" tabindex="3"><span>Popularité</span>
             <div class="arrrow"></div>
           </div>
           <div class="custom-options">
@@ -43,8 +43,7 @@
   <div id="carousel_modal">
     <div class="carousel_container">
       <div class="carousel_media">
-        <img id="closeCarousel" src="assets/icons/close_carousel.svg" onclick="closeCarousel()" />
-
+        <img id="closeCarousel" src="assets/icons/close_carousel.svg" onclick="closeCarousel()" tabindex="16" autofocus />
         <img id="mediaCarousel" src="" media-index="" />
         <!-- <video ></video> -->
         <div id="mediaName"></div>
@@ -66,7 +65,7 @@
         <h2>Contactez-moi</h2>
         <img src="assets/icons/close.svg" onclick="closeModal()" />
       </header>
-      <form>
+      <form id="modalForm">
         <div id="champ_modal">
           <label for="prenom">Prénom</label>
           <input type="text" name="prenom" />
@@ -77,7 +76,7 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" wrap="soft" style="width: 100%;"></textarea>
         </div>
-        <button class="contact_button">Envoyer</button>
+        <button type="submit" class="contact_button" aria-labelledby="Contact me">Envoyer</button>
       </form>
     </div>
   </div>

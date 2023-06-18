@@ -41,7 +41,7 @@ function previousMedia() {
         let next = document.querySelector('[data-index="' + index + '"]').getAttribute("src");
         mediaSrc.src = next
         media.setAttribute("media-index", index);
-        index = media.getAttribute("media-index");
+        index = media.getAttribute("media-index", index);
         console.log("new index", index)
     }
 }

@@ -4,6 +4,7 @@ var photographer = [];
 
 // faire un fetch recup l'id pour json
 
+var nbrMedia
 async function getPhotographer(id) {
     // Penser à remplacer par les données récupérées dans le json
     return fetch("./data/photographers.json")
@@ -26,10 +27,13 @@ async function getPhotographer(id) {
                 media: mediaUser
                 // Pas besoin de l'id car déjà dans l'objet
             }
+            nbrMedia = photographer.media.length;
             // setName & getName encapsulation orienté objet, visibilité 
             return photographer;
         })
 }
+
+
 
 // Abandon de la class car je galère avec les getters & setters (pas compris)
 // class Photographer {
@@ -211,6 +215,7 @@ function getUserMedia(photographer, filterBy) {
             img.setAttribute('alt', titleImg);
             // Index media
             img.setAttribute('data-index', cpt++);
+            img.setAttribute('tabindex', 3 + cpt);
             // Affichage Modal
             img.setAttribute('onClick', 'displayCarousel(this)');
             // Créer un élement p et lui ajouter le titre du media
@@ -249,6 +254,7 @@ function getUserMedia(photographer, filterBy) {
             video.setAttribute('type', 'video/mp4');
              // Index media
             video.setAttribute('data-index', cpt++);
+            video.setAttribute('tabindex', 3 + cpt);
             // Créer un élement p et lui ajouter le titre du media
             videoName = document.createElement('p');
             videoName.classList.add('tiltle-media');
@@ -281,44 +287,6 @@ function getUserMedia(photographer, filterBy) {
     });
     return mediaContainer;
 }
-
-// function modalForm() {
-//     const modal = document.getElementById("champ_modal");
-//     // Add attribute to label & input prenom
-//     modal.children[0].setAttribute('for', 'prenom')
-//     modal.children[1].setAttribute('type', 'text');
-//     modal.children[1].setAttribute('name', 'prenom');
-//     // Create Label Input nom
-//     const labelNom = document.createElement('label');
-//     labelNom.setAttribute('for', 'nom');
-//     labelNom.textContent = "Nom";
-//     const inputNom = document.createElement('input');
-//     inputNom.setAttribute('type', 'text');
-//     inputNom.setAttribute('name', 'nom');
-//     modal.appendChild(labelNom);
-//     modal.appendChild(inputNom);
-//     // Create Label Input email
-//     const labelEmail = document.createElement('label');
-//     labelEmail.setAttribute('for', 'email');
-//     labelEmail.textContent = "Email";
-//     const inputEmail = document.createElement('input');
-//     inputEmail.setAttribute('type', 'email');
-//     inputEmail.setAttribute('name', 'email');
-//     modal.appendChild(labelEmail);
-//     modal.appendChild(inputEmail);
-//     // Create Label Input message
-//     const labelMessage = document.createElement('label');
-//     labelMessage.setAttribute('for', 'message');
-//     labelMessage.textContent = "Message";
-//     const inputMessage = document.createElement('textarea');
-//     inputMessage.setAttribute('id', 'message');
-//     inputMessage.setAttribute('name', 'message');
-//     inputMessage.setAttribute('wrap', 'soft');
-//     modal.appendChild(labelMessage);
-//     modal.appendChild(inputMessage);
-//     const message = document.getElementById("message");
-//     message.style.width = "100%";
-// }
 
 function displayMedia(userMedia) {
     if (document.querySelector('.media-container') !== null) {

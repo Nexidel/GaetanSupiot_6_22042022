@@ -1,7 +1,7 @@
 function photographerFactory(data) {
     const { name, portrait, city, country, price, tagline, id } = data;
 
-    if (data.name.includes(' ')){
+    if (data.name.includes(' ')) {
         data.name = data.name.replace(' ', '_');
     }
     console.log(data.name)
@@ -11,21 +11,23 @@ function photographerFactory(data) {
     function getUserCardDOM(tabindexCount) {
         // Create <article>
         const article = document.createElement('article');
-
+        // Creeate figure
+        const figure = document.createElement('figure');
         //Create <a>
         const aPhotographer = document.createElement('a')
         // Set <a> attributes
         aPhotographer.setAttribute('id', 'photographer_' + id)
         aPhotographer.setAttribute('tabindex', tabindexCount)
         aPhotographer.setAttribute('aria-labelledby', name)
-        aPhotographer.setAttribute('href','photographer.html?id=' + id)
+        aPhotographer.setAttribute('href', 'photographer.html?id=' + id)
         // Add <a> inside <article>
         article.appendChild(aPhotographer);
+        aPhotographer.appendChild(figure);
 
         // Create <img> inside <a>
         const img = document.createElement('img');
         // Add <img> inside <a>
-        aPhotographer.appendChild(img);
+        figure.appendChild(img);
         // Set <img> attrivute
         img.setAttribute('alt', name)
         img.setAttribute('id', 'artisteProfile')
